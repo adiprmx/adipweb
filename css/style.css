@@ -1,0 +1,564 @@
+/* ============================================ */
+/* ADIP RMX - Premium Music Store Stylesheet */
+/* ============================================ */
+
+/* 
+   CATATAN PENTING UNTUK MODIFIKASI:
+   
+   1. WARNA: Semua warna menggunakan variabel Tailwind yang sudah didefinisikan di index.html
+      - primary: #000000 (hitam)
+      - secondary: #FFFFFF (putih)
+      - background: #F5F5F5 (abu-abu muda)
+      - text-dark: #1A1A1A (hitam pekat)
+      - text-gray: #666666 (abu-abu)
+      - border-gray: #E0E0E0 (abu-abu border)
+   
+   2. UNTUK MENGUBAH WARNA: Edit bagian tailwind.config di index.html
+   
+   3. UNTUK MENGUBAH UKURAN FONT: Cari class text-XX (contoh: text-sm, text-lg, text-2xl)
+   
+   4. UNTUK MENGUBAH SPACING: Cari class p-XX (padding) atau m-XX (margin)
+*/
+
+/* ============================================ */
+/* CSS VARIABLES & BASE */
+/* ============================================ */
+
+:root {
+    --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-expo-in: cubic-bezier(0.7, 0, 0.84, 0);
+    --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* ============================================ */
+/* NAVBAR STYLES */
+/* ============================================ */
+
+#navbar {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+#navbar.scrolled {
+    background: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+#navbar.scrolled .nav-link,
+#navbar.scrolled span {
+    color: white;
+}
+
+#navbar.scrolled i {
+    color: white;
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s var(--ease-expo-out);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ============================================ */
+/* HERO SECTION */
+/* ============================================ */
+
+#hero {
+    position: relative;
+}
+
+#waveform-canvas {
+    z-index: 0;
+}
+
+.hero-text {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.hero-image {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.main-image {
+    transform: perspective(1000px) rotateY(15deg) translateX(100px);
+}
+
+.secondary-image-1,
+.secondary-image-2 {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.stat-item {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+/* ============================================ */
+/* FEATURE CARDS */
+/* ============================================ */
+
+.feature-card {
+    opacity: 0;
+    transform: translateY(40px) rotateX(-10deg);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+}
+
+.feature-card i {
+    transition: transform 0.3s var(--ease-elastic);
+}
+
+.feature-card:hover i {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* ============================================ */
+/* PRODUCT CARDS */
+/* ============================================ */
+
+.product-card {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.4s var(--ease-expo-out);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+}
+
+.product-card .product-image {
+    overflow: hidden;
+}
+
+.product-card .product-image img {
+    transition: transform 0.6s var(--ease-expo-out);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.05);
+}
+
+/* Genre Badge */
+.genre-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.genre-pop { background: #E3F2FD; color: #1565C0; }
+.genre-trap { background: #F3E5F5; color: #7B1FA2; }
+.genre-dangdut { background: #FFF3E0; color: #E65100; }
+.genre-hiphop { background: #E8F5E9; color: #2E7D32; }
+.genre-edm { background: #E0F2F1; color: #00695C; }
+.genre-lofi { background: #FCE4EC; color: #C2185B; }
+.genre-slow { background: #ECEFF1; color: #455A64; }
+.genre-happy { background: #FFF8E1; color: #F57F17; }
+.genre-viral { background: #FFEBEE; color: #C62828; }
+.genre-latin { background: #E8EAF6; color: #303F9F; }
+.genre-funk { background: #EDE7F6; color: #512DA8; }
+.genre-phonk { background: #212121; color: #FFFFFF; }
+
+/* ============================================ */
+/* SAMPLE PACK CARDS */
+/* ============================================ */
+
+.sample-card {
+    opacity: 0;
+    transform: translateY(80px);
+    transition: all 0.4s var(--ease-expo-out);
+}
+
+.sample-card:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.sample-card .play-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sample-card:hover .play-overlay {
+    opacity: 1;
+}
+
+/* ============================================ */
+/* SERVICE CARDS */
+/* ============================================ */
+
+.service-card {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.service-card:hover {
+    border-color: #000;
+}
+
+/* ============================================ */
+/* AUDIO PLAYER */
+/* ============================================ */
+
+.play-btn {
+    transition: all 0.3s var(--ease-elastic);
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+}
+
+.play-btn.playing {
+    background: #10B981;
+}
+
+.play-btn.playing:hover {
+    background: #059669;
+}
+
+.waveform-bar {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 32px;
+}
+
+.waveform-bar span {
+    width: 3px;
+    background: #E0E0E0;
+    border-radius: 2px;
+    transition: height 0.2s ease, background 0.2s ease;
+}
+
+.waveform-bar span.active {
+    background: #000;
+}
+
+.playing .waveform-bar span.active {
+    animation: waveform 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes waveform {
+    0% { height: 20%; }
+    100% { height: 100%; }
+}
+
+/* ============================================ */
+/* TESTIMONIAL CARDS */
+/* ============================================ */
+
+.testimonial-card {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.4s var(--ease-expo-out);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================ */
+/* PAYMENT SECTION */
+/* ============================================ */
+
+.payment-method {
+    transition: all 0.3s ease;
+}
+
+.payment-method:hover {
+    transform: translateY(-2px);
+}
+
+.copy-btn {
+    transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+    transform: scale(1.05);
+}
+
+.copy-btn.copied {
+    color: #10B981;
+}
+
+/* ============================================ */
+/* CART SIDEBAR */
+/* ============================================ */
+
+#cart-sidebar {
+    will-change: transform;
+}
+
+#cart-sidebar.open {
+    transform: translateX(0);
+}
+
+.cart-item {
+    animation: slideIn 0.3s var(--ease-expo-out);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ============================================ */
+/* BUTTONS */
+/* ============================================ */
+
+.add-to-cart {
+    transition: all 0.3s var(--ease-expo-out);
+}
+
+.add-to-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.add-to-cart:active {
+    transform: translateY(0);
+}
+
+/* ============================================ */
+/* PAGINATION */
+/* ============================================ */
+
+.pagination-btn {
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ============================================ */
+/* LIGHTBOX */
+/* ============================================ */
+
+#lightbox {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ============================================ */
+/* TOAST NOTIFICATION */
+/* ============================================ */
+
+#toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ============================================ */
+/* FORM STYLES */
+/* ============================================ */
+
+input:focus,
+select:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================ */
+/* SCROLL ANIMATIONS */
+/* ============================================ */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s var(--ease-expo-out);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================ */
+/* LOADING ANIMATIONS */
+/* ============================================ */
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ============================================ */
+/* FLOATING ANIMATION */
+/* ============================================ */
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ============================================ */
+/* GLOW EFFECT */
+/* ============================================ */
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.glow-effect {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* ============================================ */
+/* RESPONSIVE STYLES */
+/* ============================================ */
+
+@media (max-width: 1024px) {
+    .hero-text {
+        font-size: 2.5rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-text {
+        font-size: 2rem !important;
+    }
+    
+    #navbar {
+        background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .main-image {
+        transform: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-text {
+        font-size: 1.75rem !important;
+    }
+}
+
+/* ============================================ */
+/* REDUCED MOTION */
+/* ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .hero-text,
+    .hero-image,
+    .feature-card,
+    .product-card,
+    .sample-card,
+    .service-card,
+    .testimonial-card {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ============================================ */
+/* CUSTOM SCROLLBAR */
+/* ============================================ */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #CCCCCC;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #999999;
+}
+
+/* ============================================ */
+/* SELECTION COLOR */
+/* ============================================ */
+
+::selection {
+    background: #000;
+    color: #FFF;
+}
+
+::-moz-selection {
+    background: #000;
+    color: #FFF;
+}
