@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang ADIP RMX | Kisah & Perjalanan</title>
+    <meta name="description" content="Kenali ADIP RMX lebih dekat. Kisah perjalanan, asal muasal nama, dan visi di balik brand musik produksi Indonesia.">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#FFFFFF',
+                        background: '#F5F5F5',
+                        'text-dark': '#1A1A1A',
+                        'text-gray': '#666666',
+                        'border-gray': '#E0E0E0',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-text-dark font-sans antialiased">
+    
+    <!-- ============================================ -->
+    <!-- NAVIGATION BAR -->
+    <!-- ============================================ -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="w-full px-6 lg:px-12">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <a href="index.html" class="group">
+                        <img src="images/logo.png" alt="ADIP RMX" class="h-12 w-12 rounded-full border-2 border-black object-cover transition-transform duration-300 group-hover:scale-105">
+                    </a>
+                    <a href="about.html" class="text-xl font-bold hidden sm:block hover:text-text-gray transition-colors">ADIP RMX</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html#dashboard" class="nav-link text-sm font-medium hover:text-text-gray transition-colors relative">Dashboard</a>
+                    <a href="index.html#products" class="nav-link text-sm font-medium hover:text-text-gray transition-colors relative">Produk</a>
+                    <a href="index.html#request" class="nav-link text-sm font-medium hover:text-text-gray transition-colors relative">Request</a>
+                    <a href="index.html#payment" class="nav-link text-sm font-medium hover:text-text-gray transition-colors relative">Pembayaran</a>
+                    <a href="index.html#testimonials" class="nav-link text-sm font-medium hover:text-text-gray transition-colors relative">Testimoni</a>
+                    <a href="about.html" class="nav-link text-sm font-medium text-black border-b-2 border-black pb-1">Tentang</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="flex items-center gap-4">
+                    <a href="https://wa.me/6285893523975" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-all hover:scale-102 hover:shadow-lg">
+                        Order Now
+                    </a>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-border-gray">
+            <div class="px-6 py-4 space-y-3">
+                <a href="index.html#dashboard" class="block py-2 text-sm font-medium">Dashboard</a>
+                <a href="index.html#products" class="block py-2 text-sm font-medium">Produk</a>
+                <a href="index.html#request" class="block py-2 text-sm font-medium">Request</a>
+                <a href="index.html#payment" class="block py-2 text-sm font-medium">Pembayaran</a>
+                <a href="index.html#testimonials" class="block py-2 text-sm font-medium">Testimoni</a>
+                <a href="about.html" class="block py-2 text-sm font-medium text-black font-semibold">Tentang</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- HERO SECTION - ABOUT -->
+    <!-- ============================================ -->
+    <section class="min-h-screen pt-20 relative overflow-hidden bg-black text-white">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-gray-500 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="w-full px-6 lg:px-12 py-20 lg:py-32 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-8">
+                    <i class="fas fa-user text-sm"></i>
+                    <span class="text-sm font-medium">Tentang Aku</span>
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight mb-8">
+                    <span class="block">ADIP RMX</span>
+                    <span class="block text-gray-400 text-2xl sm:text-3xl lg:text-4xl mt-4 font-medium">Passion. Dedication. Music.</span>
+                </h1>
+                
+                <p class="text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    Awalnya cuma iseng dan penasaran, sekarang masih belajar dan berkembang pelan-pelan, fokus sama proses dan perbaikan diri setiap hari.
+                </p>
+                
+                <div class="flex justify-center gap-6 mt-12">
+                    <a href="#story" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all">
+                        Baca Kisah Aku
+                        <i class="fas fa-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-white/50 text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- ASAL MULAI SECTION -->
+    <!-- ============================================ -->
+    <section id="story" class="py-20 lg:py-32 bg-white">
+        <div class="w-full px-6 lg:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <!-- Left - Image -->
+                    <div class="relative">
+                        <div class="aspect-square rounded-3xl overflow-hidden bg-gray-100">
+                            <img src="images/about-story.jpg" alt="ADIP RMX PIC" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-black text-white p-6 rounded-2xl">
+                            <div class="text-4xl font-bold">2024</div>
+                            <div class="text-sm text-gray-400">Mulai Belajari</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right - Content -->
+                    <div class="space-y-6">
+                        <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Asal Muasal</span>
+                        <h2 class="text-3xl lg:text-4xl font-bold">Berawal Dari Nol, Masih Dalam Proses</h2>
+                        
+                        <div class="space-y-4 text-text-gray leading-relaxed">
+                            <p>
+                                <strong class="text-black">ADIP</strong> berasal dari nama panggilan saya sendiri - sebuah nama yang diberikan oleh orang tua dan telah menjadi bagian dari identitas saya sejak lahir.
+                            </p>
+                            <p>
+                                <strong class="text-black">RMX</strong> adalah singkatan dari <em>"Remix"</em> - sesuatu yang selalu saya sukai sejak pertama kali terjun ke dunia musik. Remix bukan sekadar mengubah lagu, tapi memberikan sentuhan pribadi dan kreativitas baru.
+                            </p>
+                            <p>
+                                Jadi, <strong class="text-black">ADIP RMX</strong> adalah perpaduan antara identitas diri dan passion saya dalam musik. Nama yang sederhana, tapi penuh makna.
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-center gap-4 pt-4">
+                            <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                                <i class="fas fa-quote-left text-white"></i>
+                            </div>
+                            <p class="italic text-text-gray">"Semoga lewat karya kita, producer Indonesia bisa terus berkembang dan dikenal lebih luas."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- TIMELINE SECTION -->
+    <!-- ============================================ -->
+    <section class="py-20 lg:py-32 bg-background">
+        <div class="w-full px-6 lg:px-12">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Perjalanan</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold mt-2">Milestones Aku</h2>
+                    <p class="text-text-gray mt-4 max-w-xl mx-auto">Perjalanan panjang yang penuh dengan pembelajaran, tantangan, dan pencapaian.</p>
+                </div>
+                
+                <!-- Timeline -->
+                <div class="relative">
+                    <!-- Line -->
+                    <div class="absolute left-8 lg:left-1/2 top-0 bottom-0 w-0.5 bg-border-gray lg:-translate-x-1/2"></div>
+                    
+                    <!-- Item 1 -->
+                    <div class="relative flex flex-col lg:flex-row items-start lg:items-center gap-8 mb-12">
+                        <div class="lg:w-1/2 lg:text-right lg:pr-12">
+                            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                                <span class="text-sm font-medium text-text-gray">2023</span>
+                                <h3 class="text-xl font-bold mt-2">Awal Mula</h3>
+                                <p class="text-text-gray mt-2 text-sm">Memulai perjalanan dari membuat FLM untuk kebutuhan pribadi. Belajar otodidak dan eksplorasi berbagai genre musik.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-8 lg:left-1/2 w-4 h-4 bg-black rounded-full border-4 border-white lg:-translate-x-1/2 z-10"></div>
+                        <div class="lg:w-1/2 lg:pl-12 pl-16">
+                            <div class="w-16 h-16 bg-black rounded-2xl flex items-center justify-center">
+                                <i class="fas fa-rocket text-white text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="relative flex flex-col lg:flex-row items-start lg:items-center gap-8 mb-12">
+                        <div class="lg:w-1/2 lg:text-right lg:pr-12 order-1 lg:order-1">
+                            <div class="w-16 h-16 bg-black rounded-2xl flex items-center justify-center ml-auto">
+                                <i class="fas fa-users text-white text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="absolute left-8 lg:left-1/2 w-4 h-4 bg-black rounded-full border-4 border-white lg:-translate-x-1/2 z-10"></div>
+                        <div class="lg:w-1/2 lg:pl-12 pl-16 order-2 lg:order-2">
+                            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                                <span class="text-sm font-medium text-text-gray">2024</span>
+                                <h3 class="text-xl font-bold mt-2">Komunitas Pertama</h3>
+                                <p class="text-text-gray mt-2 text-sm">Bergabung dengan komunitas producer Indonesia dan mulai berbagi project FLM dengan sesama musisi.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="relative flex flex-col lg:flex-row items-start lg:items-center gap-8 mb-12">
+                        <div class="lg:w-1/2 lg:text-right lg:pr-12">
+                            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                                <span class="text-sm font-medium text-text-gray">2022</span>
+                                <h3 class="text-xl font-bold mt-2">Launch ADIP RMX Shop</h3>
+                                <p class="text-text-gray mt-2 text-sm">Memutuskan untuk menjual FLM dan Sample Packs secara profesional. Mulai dari 5 produk pertama.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-8 lg:left-1/2 w-4 h-4 bg-black rounded-full border-4 border-white lg:-translate-x-1/2 z-10"></div>
+                        <div class="lg:w-1/2 lg:pl-12 pl-16">
+                            <div class="w-16 h-16 bg-black rounded-2xl flex items-center justify-center">
+                                <i class="fas fa-store text-white text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="relative flex flex-col lg:flex-row items-start lg:items-center gap-8 mb-12">
+                        <div class="lg:w-1/2 lg:text-right lg:pr-12 order-1 lg:order-1">
+                            <div class="w-16 h-16 bg-black rounded-2xl flex items-center justify-center ml-auto">
+                                <i class="fas fa-chart-line text-white text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="absolute left-8 lg:left-1/2 w-4 h-4 bg-black rounded-full border-4 border-white lg:-translate-x-1/2 z-10"></div>
+                        <div class="lg:w-1/2 lg:pl-12 pl-16 order-2 lg:order-2">
+                            <div class="bg-white p-6 rounded-2xl shadow-sm">
+                                <span class="text-sm font-medium text-text-gray">2023</span>
+                                <h3 class="text-xl font-bold mt-2">100+ Pelanggan</h3>
+                                <p class="text-text-gray mt-2 text-sm">Mencapai milestone 100 pelanggan yang puas. Mulai menerima request custom dan jasa produksi.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 5 -->
+                    <div class="relative flex flex-col lg:flex-row items-start lg:items-center gap-8">
+                        <div class="lg:w-1/2 lg:text-right lg:pr-12">
+                            <div class="bg-white p-6 rounded-2xl shadow-sm border-2 border-black">
+                                <span class="text-sm font-medium text-text-gray">2024 - Sekarang</span>
+                                <h3 class="text-xl font-bold mt-2">25+ FLM & 50+ Sample Packs</h3>
+                                <p class="text-text-gray mt-2 text-sm">Katalog produk terus bertambah. Melayani ratusan producer dari berbagai kota di Indonesia.</p>
+                            </div>
+                        </div>
+                        <div class="absolute left-8 lg:left-1/2 w-4 h-4 bg-black rounded-full border-4 border-white lg:-translate-x-1/2 z-10"></div>
+                        <div class="lg:w-1/2 lg:pl-12 pl-16">
+                            <div class="w-16 h-16 bg-black rounded-2xl flex items-center justify-center">
+                                <i class="fas fa-crown text-white text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- VISI & MISI SECTION -->
+    <!-- ============================================ -->
+    <section class="py-20 lg:py-32 bg-white">
+        <div class="w-full px-6 lg:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Visi & Misi</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold mt-2">Apa yang Kami Percayai</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Visi -->
+                    <div class="bg-black text-white p-10 rounded-3xl">
+                        <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-eye text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Visi</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Menjadi platform terdepan yang mendukung pertumbuhan musik producer Indonesia dengan menyediakan tools berkualitas tinggi yang terjangkau dan mudah diakses.
+                        </p>
+                    </div>
+                    
+                    <!-- Misi -->
+                    <div class="bg-background p-10 rounded-3xl">
+                        <div class="w-16 h-16 bg-black rounded-2xl flex items-center justify-center mb-6">
+                            <i class="fas fa-bullseye text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Misi</h3>
+                        <ul class="space-y-3 text-text-gray">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-black mt-1"></i>
+                                <span>Membuat FLM dan Sample Packs dengan kualitas profesional</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-black mt-1"></i>
+                                <span>Menyediakan harga yang terjangkau untuk semua kalangan</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-black mt-1"></i>
+                                <span>Memberikan pelayanan dan support terbaik 24/7</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check-circle text-black mt-1"></i>
+                                <span>Terus berinovasi dan mengikuti perkembangan musik</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STATS SECTION -->
+    <!-- ============================================ -->
+    <section class="py-20 lg:py-32 bg-black text-white">
+        <div class="w-full px-6 lg:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                    <div class="text-center">
+                        <div class="text-4xl lg:text-5xl font-bold mb-2">25+</div>
+                        <div class="text-gray-400">FLM Products</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl lg:text-5xl font-bold mb-2">50+</div>
+                        <div class="text-gray-400">Sample Packs</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl lg:text-5xl font-bold mb-2">500+</div>
+                        <div class="text-gray-400">Pelanggan Puas</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl lg:text-5xl font-bold mb-2">4+</div>
+                        <div class="text-gray-400">Tahun Berdiri</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- WHY CHOOSE US -->
+    <!-- ============================================ -->
+    <section class="py-20 lg:py-32 bg-background">
+        <div class="w-full px-6 lg:px-12">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Keunggulan</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold mt-2">Mengapa Memilih ADIP RMX?</h2>
+                </div>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-8 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-gem text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Kualitas Premium</h3>
+                        <p class="text-text-gray text-sm">Setiap produk melalui proses mixing dan mastering yang teliti untuk hasil terbaik.</p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-tags text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Harga Terjangkau</h3>
+                        <p class="text-text-gray text-sm">Kami percaya kualitas tidak harus mahal. Harga bersahabat untuk semua kalangan.</p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-bolt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Proses Cepat</h3>
+                        <p class="text-text-gray text-sm">Pengiriman produk dalam 5-30 menit setelah konfirmasi pembayaran.</p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-headset text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Support 24/7</h3>
+                        <p class="text-text-gray text-sm">Tim kami siap membantu kapan saja via WhatsApp dengan respon cepat.</p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-sync text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Update Berkala</h3>
+                        <p class="text-text-gray text-sm">Katalog produk terus bertambah mengikuti tren musik terkini.</p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Garansi</h3>
+                        <p class="text-text-gray text-sm">Jaminan uang kembali jika produk tidak sesuai deskripsi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- TESTIMONIALS SECTION -->
+    <!-- ============================================ -->
+    <section class="py-20 lg:py-32 bg-white">
+        <div class="w-full px-6 lg:px-12">
+            <div class="max-w-4xl mx-auto text-center">
+                <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Testimoni</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mt-2 mb-8">Apa Kata Mereka?</h2>
+                
+                <div class="bg-background p-8 lg:p-12 rounded-3xl">
+                    <div class="text-6xl text-black/10 mb-6">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-xl lg:text-2xl font-medium mb-8 leading-relaxed">
+                        "ADIP RMX telah menjadi bagian penting dari perjalanan musik saya. FLM-nya rapi, mixing-nya clean, dan yang paling penting - harganya sangat terjangkau untuk kualitas yang didapat."
+                    </p>
+                    <div class="flex items-center justify-center gap-4">
+                        <div class="w-14 h-14 bg-black rounded-full flex items-center justify-center text-white font-bold text-xl">R</div>
+                        <div class="text-left">
+                            <div class="font-semibold">Rizky Pratama</div>
+                            <div class="text-sm text-text-gray">Music Producer, Jakarta</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- CTA SECTION -->
+    <!-- ============================================ -->
+    <section class="py-20 lg:py-32 bg-black text-white">
+        <div class="w-full px-6 lg:px-12">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl lg:text-5xl font-bold mb-6">Mari Berkolaborasi</h2>
+                <p class="text-gray-300 text-lg mb-10">Punya ide atau project musik? Jangan ragu untuk menghubungi kami. Kita bisa diskusi dan wujudkan ide-ide kreatifmu!</p>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://wa.me/6285893523975" target="_blank" class="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all hover:scale-102">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        Hubungi via WhatsApp
+                    </a>
+                    <a href="index.html#products" class="inline-flex items-center gap-2 bg-transparent text-white border-2 border-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-black transition-all">
+                        Lihat Produk
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+    <footer class="py-12 bg-white border-t border-border-gray">
+        <div class="w-full px-6 lg:px-12">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Brand -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="images/logo.png" alt="ADIP RMX" class="h-12 w-12 rounded-full border-2 border-black">
+                        <span class="text-xl font-bold">ADIP RMX</span>
+                    </div>
+                    <p class="text-text-gray max-w-sm">FLM + Sample Packs untuk producer Indonesia. Kualitas premium dengan harga terjangkau.</p>
+                </div>
+                
+                <!-- Links - Products -->
+                <div>
+                    <h4 class="font-semibold mb-4">Navigasi</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-text-gray hover:text-black transition-colors">Beranda</a></li>
+                        <li><a href="index.html#products" class="text-text-gray hover:text-black transition-colors">Produk</a></li>
+                        <li><a href="about.html" class="text-text-gray hover:text-black transition-colors">Tentang Kami</a></li>
+                        <li><a href="index.html#payment" class="text-text-gray hover:text-black transition-colors">Pembayaran</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Links - Help -->
+                <div>
+                    <h4 class="font-semibold mb-4">Kontak</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://wa.me/6285893523975" target="_blank" class="text-text-gray hover:text-black transition-colors">WhatsApp</a></li>
+                        <li><a href="#" class="text-text-gray hover:text-black transition-colors">Instagram: @adipfvnky</a></li>
+                        <li><a href="#" class="text-text-gray hover:text-black transition-colors">Email: adipfvnky@email.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-border-gray flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="text-sm text-text-gray">
+                    © 2026 ADIP RMX Shop. All rights reserved.
+                </div>
+                <div class="text-sm text-text-gray">
+                    Made with <i class="fas fa-heart text-red-500"></i> for music producers.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        if (navbar) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                    navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+                } else {
+                    navbar.classList.remove('scrolled');
+                    navbar.style.background = 'transparent';
+                }
+            }, { passive: true });
+        }
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                const icon = menuBtn.querySelector('i');
+                if (icon) {
+                    if (mobileMenu.classList.contains('hidden')) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    } else {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    }
+                }
+            });
+        }
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate timeline items
+        gsap.utils.toArray('.relative.flex').forEach((item, i) => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.6,
+                delay: i * 0.1
+            });
+        });
+    </script>
+</body>
+</html>

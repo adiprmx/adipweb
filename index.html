@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADIP RMX Shop | FL Studio Mobile Projects & Sample Packs</title>
+    <meta name="description" content="Premium FL Studio Mobile Projects & Sample Packs untuk producer Indonesia. 25+ FLM Products, 50+ Sample Packs dengan kualitas profesional.">
+    
+    <!-- Google Fonts - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#FFFFFF',
+                        background: '#F5F5F5',
+                        'text-dark': '#1A1A1A',
+                        'text-gray': '#666666',
+                        'border-gray': '#E0E0E0',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-text-dark font-sans antialiased">
+    
+    <!-- ============================================ -->
+    <!-- NAVIGATION BAR -->
+    <!-- ============================================ -->
+    <!-- Bagian ini berisi navbar dengan logo dan menu -->
+    <!-- UNTUK MENAMBAH/MENGUBAH MENU: Edit bagian nav-links di bawah -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="w-full px-6 lg:px-12">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <a href="index.html" class="group">
+                        <img src="images/logo.png" alt="ADIP RMX" class="h-12 w-12 rounded-full border-2 border-black object-cover transition-transform duration-300 group-hover:scale-105">
+                    </a>
+                    <a href="about.html" class="text-xl font-bold hidden sm:block hover:text-text-gray transition-colors">ADIP RMX</a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#dashboard" class="nav-link text-sm font-medium hover:text-text-gray transition-colors relative">Dashboard</a>
+                    <a href="#products" class="nav-link text-sm font-medium hover:text-text-gray transition-colors relative">Produk</a>
+                    <a href="#request" class="nav-link text-sm font-medium hover:text-text-gray transition-colors relative">Request</a>
+                    <a href="#payment" class="nav-link text-sm font-medium hover:text-text-gray transition-colors relative">Pembayaran</a>
+                    <a href="#testimonials" class="nav-link text-sm font-medium hover:text-text-gray transition-colors relative">Testimoni</a>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="flex items-center gap-4">
+                    <button id="cart-btn" class="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
+                        <i class="fas fa-shopping-cart text-lg"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+                    </button>
+                    <a href="https://wa.me/6285893523975" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-gray-800 transition-all hover:scale-102 hover:shadow-lg">
+                        Order Now
+                    </a>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-border-gray">
+            <div class="px-6 py-4 space-y-3">
+                <a href="#dashboard" class="block py-2 text-sm font-medium">Dashboard</a>
+                <a href="#products" class="block py-2 text-sm font-medium">Produk</a>
+                <a href="#request" class="block py-2 text-sm font-medium">Request</a>
+                <a href="#payment" class="block py-2 text-sm font-medium">Pembayaran</a>
+                <a href="#testimonials" class="block py-2 text-sm font-medium">Testimoni</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- HERO SECTION -->
+    <!-- ============================================ -->
+    <!-- Bagian utama website dengan headline dan gambar -->
+    <!-- UNTUK MENGUBAH TEKS: Edit content di dalam section ini -->
+    <section id="hero" class="min-h-screen pt-20 relative overflow-hidden">
+        <!-- Canvas Background for Audio Waveform -->
+        <canvas id="waveform-canvas" class="absolute inset-0 w-full h-full opacity-20 pointer-events-none"></canvas>
+        
+        <div class="w-full px-6 lg:px-12 py-12 lg:py-20">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left Content -->
+                <div class="space-y-8 relative z-10">
+                    <!-- Tagline -->
+                    <div class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm">
+                        <i class="fas fa-music text-sm"></i>
+                        <span class="text-sm font-medium">Adip RMX Shop</span>
+                    </div>
+                    
+                    <!-- Main Heading -->
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
+                        <span class="hero-text block">FL Studio Mobile</span>
+                        <span class="hero-text block text-text-gray">Projects &</span>
+                        <span class="hero-text block">Sample Packs</span>
+                    </h1>
+                    
+                    <!-- Subheading -->
+                    <p class="text-lg text-text-gray max-w-lg">
+                        Built for producers who want ready-to-use sounds, clean mixing, and fast delivery. Harga terjangkau dengan kualitas premium.
+                    </p>
+                    
+                    <!-- Stats -->
+                    <div class="flex gap-8">
+                        <div class="stat-item">
+                            <div class="text-3xl lg:text-4xl font-bold">25+</div>
+                            <div class="text-sm text-text-gray">FLM Products</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="text-3xl lg:text-4xl font-bold">50+</div>
+                            <div class="text-sm text-text-gray">Sample Packs</div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#products" class="inline-flex items-center gap-2 bg-black text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-gray-800 transition-all hover:scale-102 hover:shadow-xl">
+                            Lihat Produk
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/6285893523975" target="_blank" class="inline-flex items-center gap-2 bg-white text-black border-2 border-black px-6 py-3.5 rounded-xl font-semibold hover:bg-black hover:text-white transition-all">
+                            <i class="fab fa-whatsapp"></i>
+                            Chat WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Images -->
+                <div class="relative lg:h-[600px]">
+                    <!-- Main Image -->
+                    <div class="hero-image main-image relative z-10 rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="images/hero-main.jpg" alt="Music Producer" class="w-full h-[400px] lg:h-[500px] object-cover">
+                    </div>
+                    
+                    <!-- Secondary Images -->
+                    <div class="hero-image secondary-image-1 absolute -bottom-10 -left-10 w-48 h-48 rounded-xl overflow-hidden shadow-xl border-4 border-white z-20 hidden lg:block">
+                        <img src="images/hero-secondary-1.jpg" alt="Studio Equipment" class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div class="hero-image secondary-image-2 absolute -bottom-5 right-10 w-40 h-40 rounded-xl overflow-hidden shadow-xl border-4 border-white z-20 hidden lg:block">
+                        <img src="images/hero-secondary-2.jpg" alt="Producer Working" class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Support Badge -->
+                    <div class="absolute bottom-20 -left-5 bg-white px-4 py-3 rounded-xl shadow-lg z-30 flex items-center gap-3">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                            <i class="fab fa-whatsapp text-green-600"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold">Support 24/7</div>
+                            <div class="text-xs text-text-gray">Fast Response</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- DASHBOARD / STATS SECTION -->
+    <!-- ============================================ -->
+    <!-- Menampilkan statistik dan keunggulan -->
+    <section id="dashboard" class="py-20 bg-white">
+        <div class="w-full px-6 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Dapatkan sound yang siap pakai</h2>
+                <p class="text-text-gray text-lg">Projek rapi, sample bersih, dan support yang responsif untuk kebutuhan produksi musik Anda.</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Feature Card 1 -->
+                <div class="feature-card bg-background p-8 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-sliders-h text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">FLM Rapi</h3>
+                    <p class="text-text-gray text-sm">Track terorganisir, mixing balance, siap upload ke platform.</p>
+                </div>
+                
+                <!-- Feature Card 2 -->
+                <div class="feature-card bg-background p-8 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-music text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Sample Bersih</h3>
+                    <p class="text-text-gray text-sm">Loop & one-shot dengan labeling jelas dan kualitas tinggi.</p>
+                </div>
+                
+                <!-- Feature Card 3 -->
+                <div class="feature-card bg-background p-8 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-redo text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Request Revisi</h3>
+                    <p class="text-text-gray text-sm">Revisi kecil & cepat sesuai kesepakatan awal.</p>
+                </div>
+                
+                <!-- Feature Card 4 -->
+                <div class="feature-card bg-background p-8 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Support Cepat</h3>
+                    <p class="text-text-gray text-sm">Respons cepat via WhatsApp untuk bantuan teknis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PRODUCTS SECTION - FLM -->
+    <!-- ============================================ -->
+    <!-- Menampilkan 25 produk FLM dengan audio player -->
+    <!-- UNTUK MENAMBAH PRODUK: Tambahkan data di file js/products.js -->
+    <section id="products" class="py-20 bg-background">
+        <div class="w-full px-6 lg:px-12">
+            <!-- Section Header -->
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
+                <div>
+                    <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Featured FLM</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold mt-2">FL Studio Mobile Projects</h2>
+                    <p class="text-text-gray mt-3 max-w-xl">Koleksi FLM dengan berbagai genre. Siap pakai untuk konten atau rilis.</p>
+                </div>
+                <div class="mt-4 lg:mt-0">
+                    <span class="text-4xl font-bold">25+</span>
+                    <span class="text-text-gray ml-2">Products</span>
+                </div>
+            </div>
+            
+            <!-- Featured Product -->
+            <div class="bg-white rounded-3xl p-6 lg:p-10 mb-12 shadow-lg">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div class="rounded-2xl overflow-hidden">
+                        <img src="images/flm-featured.jpg" alt="FLM Featured" class="w-full h-[300px] lg:h-[400px] object-cover">
+                    </div>
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-black text-white px-3 py-1 rounded-full text-xs font-medium">
+                            <i class="fas fa-star"></i>
+                            POP
+                        </div>
+                        <h3 class="text-2xl lg:text-3xl font-bold">FLM Rully Fvnky</h3>
+                        <p class="text-text-gray">Style pop-funk dengan bass tight, drum groove lengkap, dan arrangement siap pakai. Mixing balance untuk platform streaming.</p>
+                        
+                        <!-- Audio Preview -->
+                        <div class="bg-background p-4 rounded-xl">
+                            <div class="flex items-center gap-4">
+                                <button class="play-btn w-12 h-12 bg-black text-white rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors" data-audio="assets/audio/flm-featured.mp3">
+                                    <i class="fas fa-play ml-1"></i>
+                                </button>
+                                <div class="flex-1">
+                                    <div class="waveform-bar flex items-center gap-1 h-8">
+                                        <!-- Waveform bars generated by JS -->
+                                    </div>
+                                </div>
+                                <span class="text-sm text-text-gray preview-time">0:30</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="text-3xl font-bold">Rp 89.000</div>
+                            <div class="flex gap-3">
+                                <button class="add-to-cart px-6 py-3 bg-black text-white rounded-xl font-semibold hover:bg-gray-800 transition-all hover:scale-102" data-product="FLM Rully Fvnky" data-price="89000" data-type="FLM">
+                                    Beli Sekarang
+                                </button>
+                                <button class="favorite-btn w-12 h-12 border-2 border-border-gray rounded-xl flex items-center justify-center hover:border-red-500 hover:text-red-500 transition-all" data-product="FLM Rully Fvnky">
+                                    <i class="far fa-heart text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Products Grid -->
+            <div id="flm-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Products will be loaded from JavaScript -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button id="load-more-flm" class="inline-flex items-center gap-2 bg-white border-2 border-black px-8 py-3.5 rounded-xl font-semibold hover:bg-black hover:text-white transition-all">
+                    Lihat Semua FLM
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SAMPLE PACKS SECTION -->
+    <!-- ============================================ -->
+    <!-- Menampilkan 50+ sample pack dengan audio player -->
+    <!-- UNTUK MENAMBAH SAMPLE PACK: Tambahkan data di file js/products.js -->
+    <section id="sample-packs" class="py-20 bg-white">
+        <div class="w-full px-6 lg:px-12">
+            <!-- Section Header -->
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
+                <div>
+                    <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Sample Packs</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold mt-2">Koleksi Sample Premium</h2>
+                    <p class="text-text-gray mt-3 max-w-xl">Drum loops, melody loops, one-shots, FX—semua dengan label rapi.</p>
+                </div>
+                <div class="mt-4 lg:mt-0">
+                    <span class="text-4xl font-bold">50+</span>
+                    <span class="text-text-gray ml-2">Packs</span>
+                </div>
+            </div>
+            
+            <!-- Sample Packs Grid -->
+            <div id="sample-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+                <!-- Sample packs will be loaded from JavaScript -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex justify-center items-center gap-2 mt-12">
+                <button class="pagination-btn w-10 h-10 rounded-lg bg-black text-white font-medium">1</button>
+                <button class="pagination-btn w-10 h-10 rounded-lg bg-white border border-border-gray hover:bg-background transition-colors font-medium">2</button>
+                <button class="pagination-btn w-10 h-10 rounded-lg bg-white border border-border-gray hover:bg-background transition-colors font-medium">3</button>
+                <button class="pagination-btn w-10 h-10 rounded-lg bg-white border border-border-gray hover:bg-background transition-colors font-medium">4</button>
+                <button class="pagination-btn w-10 h-10 rounded-lg bg-white border border-border-gray hover:bg-background transition-colors font-medium">5</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SERVICES SECTION - Chord & BPM -->
+    <!-- ============================================ -->
+    <!-- Menampilkan jasa nyusun chord dan BPM -->
+    <section id="services" class="py-20 bg-background">
+        <div class="w-full px-6 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Layanan</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mt-2 mb-4">Butuh bantuan produksi?</h2>
+                <p class="text-text-gray text-lg">Chord progression, BPM mapping, dan request custom—cepat & rapi.</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-white p-8 rounded-2xl border border-border-gray hover:border-black hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-guitar text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Nyusun Chord</h3>
+                    <p class="text-text-gray text-sm mb-6">Dari referensi lagu atau mood yang kamu inginkan. Chord progression yang harmonis.</p>
+                    <div class="pt-4 border-t border-border-gray">
+                        <div class="text-xs text-text-gray mb-1">Mulai dari</div>
+                        <div class="text-lg font-bold">Rp 50.000 - 100.000</div>
+                    </div>
+                    <button class="add-to-cart w-full mt-4 py-3 border-2 border-black rounded-xl font-semibold hover:bg-black hover:text-white transition-all" data-product="Jasa Nyusun Chord" data-price="50000" data-type="Service">
+                        Request Layanan
+                    </button>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card bg-white p-8 rounded-2xl border border-border-gray hover:border-black hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-tachometer-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">BPM & Arrangement</h3>
+                    <p class="text-text-gray text-sm mb-6">Mapping tempo, struktur, dan transisi yang clean. Arrangement profesional.</p>
+                    <div class="pt-4 border-t border-border-gray">
+                        <div class="text-xs text-text-gray mb-1">Mulai dari</div>
+                        <div class="text-lg font-bold">Rp 75.000 - 150.000</div>
+                    </div>
+                    <button class="add-to-cart w-full mt-4 py-3 border-2 border-black rounded-xl font-semibold hover:bg-black hover:text-white transition-all" data-product="Jasa BPM & Arrangement" data-price="75000" data-type="Service">
+                        Request Layanan
+                    </button>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card bg-white p-8 rounded-2xl border border-border-gray hover:border-black hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-magic text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Request Custom</h3>
+                    <p class="text-text-gray text-sm mb-6">Beat sesuai brief: genre, vibe, deadline. Revisi kecil termasuk.</p>
+                    <div class="pt-4 border-t border-border-gray">
+                        <div class="text-xs text-text-gray mb-1">Mulai dari</div>
+                        <div class="text-lg font-bold">Rp 150.000 - 300.000</div>
+                    </div>
+                    <button class="add-to-cart w-full mt-4 py-3 border-2 border-black rounded-xl font-semibold hover:bg-black hover:text-white transition-all" data-product="Jasa Request Custom" data-price="150000" data-type="Service">
+                        Request Layanan
+                    </button>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="service-card bg-white p-8 rounded-2xl border border-border-gray hover:border-black hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-wave-square text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Mixing & Mastering</h3>
+                    <p class="text-text-gray text-sm mb-6">Mixing balance dan mastering untuk kualitas broadcast. Siap rilis.</p>
+                    <div class="pt-4 border-t border-border-gray">
+                        <div class="text-xs text-text-gray mb-1">Mulai dari</div>
+                        <div class="text-lg font-bold">Rp 100.000 - 200.000</div>
+                    </div>
+                    <button class="add-to-cart w-full mt-4 py-3 border-2 border-black rounded-xl font-semibold hover:bg-black hover:text-white transition-all" data-product="Jasa Mixing & Mastering" data-price="100000" data-type="Service">
+                        Request Layanan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- REQUEST SECTION -->
+    <!-- ============================================ -->
+    <!-- Form untuk request custom -->
+    <section id="request" class="py-20 bg-white">
+        <div class="w-full px-6 lg:px-12">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Request</span>
+                    <h2 class="text-3xl lg:text-4xl font-bold mt-2 mb-4">Request Custom Beat</h2>
+                    <p class="text-text-gray text-lg">Jelaskan kebutuhan Anda dan kami akan membuatkan beat sesuai brief.</p>
+                </div>
+                
+                <div class="bg-background p-8 lg:p-12 rounded-3xl">
+                    <form id="request-form" class="space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Nama Lengkap</label>
+                                <input type="text" name="name" required class="w-full px-4 py-3 rounded-xl border border-border-gray focus:border-black focus:outline-none transition-colors" placeholder="Masukkan nama Anda">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Nomor WhatsApp</label>
+                                <input type="tel" name="whatsapp" required class="w-full px-4 py-3 rounded-xl border border-border-gray focus:border-black focus:outline-none transition-colors" placeholder="08xxxxxxxxxx">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Genre/Mood</label>
+                            <select name="genre" required class="w-full px-4 py-3 rounded-xl border border-border-gray focus:border-black focus:outline-none transition-colors">
+                                <option value="">Pilih Genre</option>
+                                <option value="pop">Pop</option>
+                                <option value="trap">Trap</option>
+                                <option value="dangdut">Dangdut</option>
+                                <option value="hiphop">Hip Hop</option>
+                                <option value="edm">EDM</option>
+                                <option value="lofi">Lo-Fi</option>
+                                <option value="other">Lainnya</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Referensi Lagu (opsional)</label>
+                            <input type="text" name="reference" class="w-full px-4 py-3 rounded-xl border border-border-gray focus:border-black focus:outline-none transition-colors" placeholder="Contoh: Lagu XXX artis YYY">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Detail Request</label>
+                            <textarea name="detail" rows="4" required class="w-full px-4 py-3 rounded-xl border border-border-gray focus:border-black focus:outline-none transition-colors resize-none" placeholder="Jelaskan detail kebutuhan Anda: vibe, instrumen yang diinginkan, BPM, dll."></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Budget</label>
+                            <select name="budget" required class="w-full px-4 py-3 rounded-xl border border-border-gray focus:border-black focus:outline-none transition-colors">
+                                <option value="">Pilih Range Budget</option>
+                                <option value="150-200">Rp 150.000 - 200.000</option>
+                                <option value="200-300">Rp 200.000 - 300.000</option>
+                                <option value="300-500">Rp 300.000 - 500.000</option>
+                                <option value="500+">Rp 500.000+</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-4 bg-black text-white rounded-xl font-semibold hover:bg-gray-800 transition-all hover:scale-102">
+                            Kirim Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- PAYMENT SECTION -->
+    <!-- ============================================ -->
+    <!-- Menampilkan metode pembayaran lengkap dengan QRIS -->
+    <section id="payment" class="py-20 bg-background">
+        <div class="w-full px-6 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Pembayaran</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mt-2 mb-4">Pembayaran mudah.</h2>
+                <p class="text-text-gray text-lg">Transfer bank, e-wallet, atau QRIS. Semua dalam satu tempat.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Payment Methods -->
+                <div class="bg-white p-8 rounded-3xl shadow-lg">
+                    <h3 class="text-xl font-semibold mb-6">Metode Pembayaran</h3>
+                    
+                    <!-- QRIS -->
+                    <div class="mb-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-qrcode text-blue-600"></i>
+                            </div>
+                            <span class="font-semibold">QRIS</span>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-xl text-center">
+                            <img src="images/qris-code.jpg" alt="QRIS Code" class="w-48 h-48 mx-auto object-contain">
+                            <p class="text-sm text-text-gray mt-4">Scan dengan aplikasi e-wallet atau mobile banking</p>
+                        </div>
+                    </div>
+                    
+                    <!-- E-Wallets -->
+                    <div class="mb-8">
+                        <h4 class="text-sm font-medium text-text-gray mb-4">E-Wallet</h4>
+                        <div class="grid grid-cols-4 gap-4">
+                            <div class="payment-method flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+                                <img src="images/payment/dana.png" alt="DANA" class="w-10 h-10 object-contain">
+                                <span class="text-xs font-medium">DANA</span>
+                            </div>
+                            <div class="payment-method flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+                                <img src="images/payment/gopay.png" alt="GoPay" class="w-10 h-10 object-contain">
+                                <span class="text-xs font-medium">GoPay</span>
+                            </div>
+                            <div class="payment-method flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+                                <img src="images/payment/ovo.png" alt="OVO" class="w-10 h-10 object-contain">
+                                <span class="text-xs font-medium">OVO</span>
+                            </div>
+                            <div class="payment-method flex flex-col items-center gap-2 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+                                <img src="images/payment/shopeepay.png" alt="ShopeePay" class="w-10 h-10 object-contain">
+                                <span class="text-xs font-medium">ShopeePay</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bank Transfer -->
+                    <div>
+                        <h4 class="text-sm font-medium text-text-gray mb-4">Transfer Bank</h4>
+                        <div class="space-y-3">
+                            <div class="payment-method flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <img src="images/payment/bca.png" alt="BCA" class="w-10 h-10 object-contain">
+                                    <div>
+                                        <div class="font-medium">Bank BCA</div>
+                                        <div class="text-sm text-text-gray">1234567890</div>
+                                    </div>
+                                </div>
+                                <button class="copy-btn text-sm text-blue-600 hover:text-blue-700" data-copy="1234567890">
+                                    <i class="far fa-copy"></i> Salin
+                                </button>
+                            </div>
+                            <div class="payment-method flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <img src="images/payment/mandiri.png" alt="Mandiri" class="w-10 h-10 object-contain">
+                                    <div>
+                                        <div class="font-medium">Bank Mandiri</div>
+                                        <div class="text-sm text-text-gray">0987654321</div>
+                                    </div>
+                                </div>
+                                <button class="copy-btn text-sm text-blue-600 hover:text-blue-700" data-copy="0987654321">
+                                    <i class="far fa-copy"></i> Salin
+                                </button>
+                            </div>
+                            <div class="payment-method flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <img src="images/payment/bni.png" alt="BNI" class="w-10 h-10 object-contain">
+                                    <div>
+                                        <div class="font-medium">Bank BNI</div>
+                                        <div class="text-sm text-text-gray">1122334455</div>
+                                    </div>
+                                </div>
+                                <button class="copy-btn text-sm text-blue-600 hover:text-blue-700" data-copy="1122334455">
+                                    <i class="far fa-copy"></i> Salin
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Payment Info -->
+                <div class="space-y-6">
+                    <div class="bg-white p-8 rounded-3xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-6">Cara Pembayaran</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">1</div>
+                                <div>
+                                    <div class="font-medium">Pilih Produk</div>
+                                    <div class="text-sm text-text-gray">Pilih FLM atau Sample Pack yang Anda inginkan</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">2</div>
+                                <div>
+                                    <div class="font-medium">Lakukan Pembayaran</div>
+                                    <div class="text-sm text-text-gray">Transfer sesuai nominal ke metode pembayaran yang tersedia</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">3</div>
+                                <div>
+                                    <div class="font-medium">Kirim Bukti Transfer</div>
+                                    <div class="text-sm text-text-gray">Screenshot bukti pembayaran dan kirim via WhatsApp</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold">4</div>
+                                <div>
+                                    <div class="font-medium">Produk Dikirim</div>
+                                    <div class="text-sm text-text-gray">Produk akan dikirim via Google Drive dalam 5-30 menit</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-black text-white p-8 rounded-3xl">
+                        <h3 class="text-xl font-semibold mb-4">Butuh Bantuan?</h3>
+                        <p class="text-gray-300 mb-6">Jika ada pertanyaan tentang pembayaran, silakan hubungi kami.</p>
+                        <a href="https://wa.me/6285893523975" target="_blank" class="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                            Chat WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- TESTIMONIALS SECTION -->
+    <!-- ============================================ -->
+    <!-- Menampilkan testimoni dengan bukti chat -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="w-full px-6 lg:px-12">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-sm font-medium text-text-gray uppercase tracking-wider">Testimoni</span>
+                <h2 class="text-3xl lg:text-4xl font-bold mt-2 mb-4">Testimoni pelanggan.</h2>
+                <p class="text-text-gray text-lg">Bukti chat & review asli dari pembeli.</p>
+            </div>
+            
+            <!-- Testimonials Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-background p-6 rounded-2xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">R</div>
+                        <div>
+                            <div class="font-semibold">Rizky Pratama</div>
+                            <div class="text-sm text-text-gray">Producer</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-text-gray mb-4">"FLM-nya rapi, mixing-nya clean. Langsung bisa dipakai konten. Recommended banget!"</p>
+                    <div class="relative">
+                        <img src="images/testimonials/chat-1.jpg" alt="Bukti Chat" class="w-full h-48 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded-lg">
+                            <i class="fas fa-image mr-1"></i> Bukti Chat
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-background p-6 rounded-2xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">A</div>
+                        <div>
+                            <div class="font-semibold">Ahmad Fauzi</div>
+                            <div class="text-sm text-text-gray">Content Creator</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-text-gray mb-4">"Pelayanan cepat, kualitas sesuai ekspektasi. Sudah repeat order 3x!"</p>
+                    <div class="relative">
+                        <img src="images/testimonials/chat-2.jpg" alt="Bukti Chat" class="w-full h-48 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded-lg">
+                            <i class="fas fa-image mr-1"></i> Bukti Chat
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-background p-6 rounded-2xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">D</div>
+                        <div>
+                            <div class="font-semibold">Dina Putri</div>
+                            <div class="text-sm text-text-gray">Musician</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-text-gray mb-4">"Sample packs-nya lengkap dan well-organized. Sangat membantu produksi saya."</p>
+                    <div class="relative">
+                        <img src="images/testimonials/chat-3.jpg" alt="Bukti Chat" class="w-full h-48 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded-lg">
+                            <i class="fas fa-image mr-1"></i> Bukti Chat
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card bg-background p-6 rounded-2xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">B</div>
+                        <div>
+                            <div class="font-semibold">Budi Santoso</div>
+                            <div class="text-sm text-text-gray">Beat Maker</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-text-gray mb-4">"Harga terjangkau tapi kualitas premium. Worth it banget!"</p>
+                    <div class="relative">
+                        <img src="images/testimonials/chat-4.jpg" alt="Bukti Chat" class="w-full h-48 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded-lg">
+                            <i class="fas fa-image mr-1"></i> Bukti Chat
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 5 -->
+                <div class="testimonial-card bg-background p-6 rounded-2xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">M</div>
+                        <div>
+                            <div class="font-semibold">Maya Sari</div>
+                            <div class="text-sm text-text-gray">Singer</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-text-gray mb-4">"Jasa chord-nya rapi dan sesuai request. Recommended!"</p>
+                    <div class="relative">
+                        <img src="images/testimonials/chat-5.jpg" alt="Bukti Chat" class="w-full h-48 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded-lg">
+                            <i class="fas fa-image mr-1"></i> Bukti Chat
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 6 -->
+                <div class="testimonial-card bg-background p-6 rounded-2xl">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center font-bold text-lg">F</div>
+                        <div>
+                            <div class="font-semibold">Fajar Nugraha</div>
+                            <div class="text-sm text-text-gray">Producer</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-text-gray mb-4">"Respon cepat dan produk berkualitas. Jadi langganan disini!"</p>
+                    <div class="relative">
+                        <img src="images/testimonials/chat-6.jpg" alt="Bukti Chat" class="w-full h-48 object-cover rounded-xl cursor-pointer hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded-lg">
+                            <i class="fas fa-image mr-1"></i> Bukti Chat
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- CTA SECTION -->
+    <!-- ============================================ -->
+    <!-- Call to action untuk order -->
+    <section id="cta" class="py-20 bg-black text-white">
+        <div class="w-full px-6 lg:px-12">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl lg:text-5xl font-bold mb-6">Mulai produksi hari ini.</h2>
+                <p class="text-gray-300 text-lg mb-10">Pilih FLM atau sample pack, lalu kirim bukti bayar. Support cepat.</p>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <a href="https://wa.me/6285893523975" target="_blank" class="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all hover:scale-102">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        Order via WhatsApp
+                    </a>
+                    <a href="#products" class="inline-flex items-center gap-2 bg-transparent text-white border-2 border-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-black transition-all">
+                        Lihat Semua Produk
+                    </a>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-8 text-sm text-gray-400">
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>0858-9352-3975</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fab fa-instagram"></i>
+                        <span>@adipfvnky</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="far fa-envelope"></i>
+                        <span>adipfvnky@email.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+    <footer class="py-12 bg-white border-t border-border-gray">
+        <div class="w-full px-6 lg:px-12">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Brand -->
+                <div class="lg:col-span-2">
+                    <img src="images/logo.png" alt="ADIP RMX" class="h-12 w-12 rounded-full border-2 border-black mb-4">
+                    <p class="text-text-gray max-w-sm">FLM + Sample Packs untuk producer Indonesia. Kualitas premium dengan harga terjangkau.</p>
+                </div>
+                
+                <!-- Links - Products -->
+                <div>
+                    <h4 class="font-semibold mb-4">Produk</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#products" class="text-text-gray hover:text-black transition-colors">FLM</a></li>
+                        <li><a href="#sample-packs" class="text-text-gray hover:text-black transition-colors">Sample Packs</a></li>
+                        <li><a href="#services" class="text-text-gray hover:text-black transition-colors">Layanan</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Links - Help -->
+                <div>
+                    <h4 class="font-semibold mb-4">Bantuan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-text-gray hover:text-black transition-colors">Tentang Kami</a></li>
+                        <li><a href="#payment" class="text-text-gray hover:text-black transition-colors">Pembayaran</a></li>
+                        <li><a href="#testimonials" class="text-text-gray hover:text-black transition-colors">Testimoni</a></li>
+                        <li><a href="https://wa.me/6285893523975" target="_blank" class="text-text-gray hover:text-black transition-colors">Kontak</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-border-gray flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div class="text-sm text-text-gray">
+                    © 2026 ADIP RMX Shop. All rights reserved.
+                </div>
+                <div class="text-sm text-text-gray">
+                    Made with <i class="fas fa-heart text-red-500"></i> for music producers.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- CART SIDEBAR -->
+    <!-- ============================================ -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 z-50">
+        <div class="h-full flex flex-col">
+            <div class="p-6 border-b border-border-gray flex items-center justify-between">
+                <h3 class="text-xl font-bold">Keranjang</h3>
+                <button id="close-cart" class="w-10 h-10 rounded-full hover:bg-gray-100 flex items-center justify-center transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6">
+                <!-- Cart items will be loaded here -->
+                <div class="text-center text-text-gray py-12">
+                    <i class="fas fa-shopping-cart text-4xl mb-4 opacity-30"></i>
+                    <p>Keranjang masih kosong</p>
+                </div>
+            </div>
+            
+            <div class="p-6 border-t border-border-gray">
+                <div class="flex justify-between mb-4">
+                    <span class="text-text-gray">Total</span>
+                    <span id="cart-total" class="text-xl font-bold">Rp 0</span>
+                </div>
+                <button id="checkout-btn" class="w-full py-4 bg-black text-white rounded-xl font-semibold hover:bg-gray-800 transition-all flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp"></i>
+                    Checkout via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black/50 hidden z-40"></div>
+
+    <!-- ============================================ -->
+    <!-- LIGHTBOX -->
+    <!-- ============================================ -->
+    <div id="lightbox" class="fixed inset-0 bg-black/90 hidden z-50 flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-2xl w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Full size" class="max-w-full max-h-[90vh] object-contain rounded-lg">
+    </div>
+
+    <!-- ============================================ -->
+    <!-- NOTIFICATION TOAST -->
+    <!-- ============================================ -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-black text-white px-6 py-4 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+        <i class="fas fa-check-circle text-green-400"></i>
+        <span id="toast-message">Produk ditambahkan ke keranjang</span>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/audio-player.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
